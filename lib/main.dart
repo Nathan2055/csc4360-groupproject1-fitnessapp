@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe.dart';
 import 'package:fitnessapp/screens/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/screens/theme_model.dart';
 
 // Main method
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 // Constructor
