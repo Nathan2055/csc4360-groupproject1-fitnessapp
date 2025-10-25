@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe.dart';
 import 'package:provider/provider.dart';
-import 'package:fitnessapp/screens/theme_model.dart';
+import 'package:fitnessapp/models/theme_model.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Recipe recipe;
