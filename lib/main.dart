@@ -81,6 +81,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
+      // The current theme mode is provided by the theme model
+      // The theme model will flag the UI for update when the theme is toggled
       themeMode: Provider.of<ThemeModel>(context).themeMode,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -89,13 +91,13 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Recipe Book'),
           actions: <Widget>[
             IconButton(
+              // The icon and tooltip is also provided by the theme model
               icon: Provider.of<ThemeModel>(context).themeIcon,
               tooltip: Provider.of<ThemeModel>(context).themeText,
+              // toggleThemeMode is called to update the current theme
               onPressed: () {
-                setState(() {
-                  var model = context.read<ThemeModel>();
-                  model.toggleThemeMode();
-                });
+                var model = context.read<ThemeModel>();
+                model.toggleThemeMode();
               },
             ),
           ],
