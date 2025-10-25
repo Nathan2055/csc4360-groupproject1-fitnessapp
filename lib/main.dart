@@ -26,8 +26,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // Theme control variables
+  /*
   ThemeMode _themeMode = ThemeMode.light;
   bool darkMode = false;
+  */
 
   /*
   // Theme control functions; needed since we do the call from another file
@@ -92,13 +94,36 @@ class _MyAppState extends State<MyApp> {
     ),
   ];
 
+  /*
+  Consumer<ThemeModel> getThemeIcon() {
+    return Consumer<ThemeModel>(
+      builder: (context, theme, child) {
+        return theme.themeIcon;
+      },
+    );
+  }
+
+  Consumer<ThemeModel> getTheme() {
+    return Consumer<ThemeModel>(
+      builder: (context, theme, child) {
+        return theme.themeMode;
+      },
+    );
+  }
+  */
+
+  //Provider.of<CartModel>(context, listen: false).removeAll();
+
+  //Provider.of<ThemeModel>(context).themeMode
+
+  /*
   // App builder
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      themeMode: _themeMode,
+      themeMode: Provider.of<ThemeModel>(context).themeMode,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
@@ -118,6 +143,64 @@ class _MyAppState extends State<MyApp> {
                   _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
                   darkMode = !darkMode;
                 });
+              },
+            ),
+          ],
+        ),
+        body: HomeScreen(recipes: recipeList),
+      ),
+    );
+  }
+  */
+
+  // App builder
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: Provider.of<ThemeModel>(context).themeMode,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Recipe Book'),
+          actions: <Widget>[
+            IconButton(
+              icon: Provider.of<ThemeModel>(context).themeIcon,
+              // if dark mode, show sun; if light mode, show moon
+              /*
+              icon: darkMode
+                  ? const Icon(Icons.sunny)
+                  : const Icon(Icons.mode_night),
+              */
+              // same idea for the tooltip text
+              //tooltip: darkMode ? 'Light Mode' : 'Dark Mode',
+              tooltip: Provider.of<ThemeModel>(context).themeText,
+              onPressed: () {
+                setState(() {
+                  var model = context.read<ThemeModel>();
+                  model.toggleThemeMode();
+                });
+                /*
+                var model = context.read<ThemeModel>();
+                model.
+                */
+                /*
+                setState(() {
+                  //var model = context.read<ThemeMode>();
+                  //model.toggle
+
+                  //ThemeModel.toggleThemeMode();
+                });
+                */
+                /*
+                setState(() {
+                  // if on, switch to light mode; if off, switch to dark mode
+                  _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
+                  darkMode = !darkMode;
+                });
+                */
               },
             ),
           ],

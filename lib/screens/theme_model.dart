@@ -14,6 +14,8 @@ class ThemeModel extends ChangeNotifier {
   Icon get themeIcon => (_themeMode == ThemeMode.dark)
       ? const Icon(Icons.sunny)
       : const Icon(Icons.mode_night);
+  String get themeText =>
+      (_themeMode == ThemeMode.dark) ? 'Light Mode' : 'Dark Mode';
 
   //set _themeMode(ThemeMode newMode) => newMode;
 
