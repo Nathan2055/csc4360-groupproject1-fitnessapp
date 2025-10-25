@@ -19,9 +19,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // Theme control variables
-  final ThemeMode _themeMode =
-      ThemeMode.light; //unmark as final when toggle added
+  ThemeMode _themeMode = ThemeMode.light;
   bool darkMode = false;
+
+  /*
+  // Theme control functions; needed since we do the call from another file
+  void _updateThemeMode(ThemeMode mode) {
+    setState(() {
+      _themeMode = mode;
+    });
+  }
+
+  bool _getThemeMode() {
+    return darkMode;
+  }
+  */
 
   // Navigation is handled by HomeScreen routing to DetailsScreen
 
@@ -81,7 +93,30 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData.dark(),
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(recipes: recipeList),
+      home: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Recipe Book'),
+          actions: <Widget>[
+            IconButton(
+              // if dark mode, show sun; if light mode, show moon
+              icon: darkMode
+                  ? const Icon(Icons.sunny)
+                  : const Icon(Icons.mode_night),
+              // same idea for the tooltip text
+              tooltip: darkMode ? 'Light Mode' : 'Dark Mode',
+              onPressed: () {
+                setState(() {
+                  // if on, switch to light mode; if off, switch to dark mode
+                  _themeMode = darkMode ? ThemeMode.light : ThemeMode.dark;
+                  darkMode = !darkMode;
+                });
+              },
+            ),
+          ],
+        ),
+        body: HomeScreen(recipes: recipeList),
+      ),
     );
   }
 }
