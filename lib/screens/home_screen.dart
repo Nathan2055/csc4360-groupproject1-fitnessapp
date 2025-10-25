@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/models/recipe.dart';
-import 'package:myapp/screens/details_screen.dart';
+import '../models/recipe.dart';
+import '../screens/details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Recipe> recipes;

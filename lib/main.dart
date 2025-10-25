@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/models/recipe.dart';
-import 'package:myapp/screens/home_screen.dart';
+import 'models/recipe.dart';
+import 'screens/home_screen.dart';
 
 // Main method
 void main() {
