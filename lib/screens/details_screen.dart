@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/recipe.dart';
+import 'package:fitnessapp/models/recipe.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Recipe recipe;

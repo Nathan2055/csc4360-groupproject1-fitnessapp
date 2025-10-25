@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/recipe.dart';
-import 'screens/home_screen.dart';
+import 'package:fitnessapp/models/recipe.dart';
+import 'package:fitnessapp/screens/home_screen.dart';
 
 // Main method
 void main() {
@@ -19,7 +19,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // Theme control variables
-  ThemeMode _themeMode = ThemeMode.light;
+  final ThemeMode _themeMode =
+      ThemeMode.light; //unmark as final when toggle added
   bool darkMode = false;
 
   // Navigation is handled by HomeScreen routing to DetailsScreen
