@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe.dart';
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/screens/theme_model.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Recipe recipe;
@@ -9,7 +11,21 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(recipe.name)),
+      appBar: AppBar(
+        title: Text(recipe.name),
+        actions: <Widget>[
+          IconButton(
+            // The icon and tooltip is also provided by the theme model
+            icon: Provider.of<ThemeModel>(context).themeIcon,
+            tooltip: Provider.of<ThemeModel>(context).themeText,
+            // toggleThemeMode is called to update the current theme
+            onPressed: () {
+              var model = context.read<ThemeModel>();
+              model.toggleThemeMode();
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
