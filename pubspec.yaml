@@ -41,10 +41,6 @@ dependencies:
   path_provider: ^2.1.5
   http: ^1.2.2
 
-  #meta: ^1.17.0
-  #material_color_utilities: ^0.13.0
-  #characters: ^1.4.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
