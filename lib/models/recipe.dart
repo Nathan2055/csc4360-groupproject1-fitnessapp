@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/models/theme_model.dart';
+
 // Recipe model definition
 class Recipe {
   final int id;

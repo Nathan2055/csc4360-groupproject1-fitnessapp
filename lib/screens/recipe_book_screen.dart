@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe.dart';
 import 'package:fitnessapp/screens/details_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/models/theme_model.dart';
+import 'package:fitnessapp/widgets/title_bar.dart';
 
 class RecipeBookScreen extends StatelessWidget {
   final List<Recipe> recipes;
@@ -15,9 +18,7 @@ class RecipeBookScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Recipe Book'),
-      ),
+      appBar: TitleBar(title: const Text('Recipe Book')),
       body: ListView.builder(
         itemCount: recipes.length,
         itemBuilder: (context, index) {

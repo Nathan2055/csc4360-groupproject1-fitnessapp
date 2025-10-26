@@ -3,6 +3,7 @@ import 'package:fitnessapp/models/recipe.dart';
 import 'package:fitnessapp/screens/fitness_home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:fitnessapp/models/theme_model.dart';
+import 'package:fitnessapp/widgets/title_bar.dart';
 
 // Main method
 void main() {
@@ -78,6 +79,11 @@ class _MyAppState extends State<MyApp> {
   // App builder
   @override
   Widget build(BuildContext context) {
+    TitleBar titleB = TitleBar(
+      title: const Text('Fitness Tracker'),
+      isHome: true,
+    );
+
     return MaterialApp(
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
@@ -86,6 +92,8 @@ class _MyAppState extends State<MyApp> {
       themeMode: Provider.of<ThemeModel>(context).themeMode,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: TitleBar(title: const Text('Fitness Tracker'), isHome: true),
+        /*
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text('Fitness Tracker'),
@@ -102,6 +110,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
+        */
         body: FitnessHomeScreen(recipes: recipeList),
       ),
     );

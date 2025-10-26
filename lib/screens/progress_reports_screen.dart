@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/models/theme_model.dart';
+import 'package:fitnessapp/widgets/title_bar.dart';
 
 class ProgressReportsScreen extends StatelessWidget {
   const ProgressReportsScreen({super.key});
@@ -6,18 +9,12 @@ class ProgressReportsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Progress Reports'),
-      ),
+      appBar: TitleBar(title: const Text('Progress Reports')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.show_chart,
-              size: 80,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.show_chart, size: 80, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               'View your progress',

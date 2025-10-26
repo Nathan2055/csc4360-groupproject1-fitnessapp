@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/models/theme_model.dart';
+import 'package:fitnessapp/widgets/title_bar.dart';
 
 class CalorieTrackerScreen extends StatelessWidget {
   const CalorieTrackerScreen({super.key});
@@ -6,9 +9,7 @@ class CalorieTrackerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calorie Tracker'),
-      ),
+      appBar: TitleBar(title: const Text('Calorie Tracker')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

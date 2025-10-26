@@ -5,6 +5,9 @@ import 'package:fitnessapp/screens/workout_log_screen.dart';
 import 'package:fitnessapp/screens/calorie_tracker_screen.dart';
 import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:fitnessapp/models/theme_model.dart';
+import 'package:fitnessapp/widgets/title_bar.dart';
 
 class FitnessHomeScreen extends StatelessWidget {
   final List<Recipe> recipes;
@@ -20,9 +23,9 @@ class FitnessHomeScreen extends StatelessWidget {
         children: [
           Text(
             'Fitness Tracker',
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 24),
           _buildCard(
@@ -31,10 +34,7 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Workout Log',
             subtitle: 'Track your workouts',
             color: const Color(0xFF6366F1),
-            onTap: () => _navigateWithZoom(
-              context,
-              WorkoutLogScreen(),
-            ),
+            onTap: () => _navigateWithZoom(context, WorkoutLogScreen()),
           ),
           const SizedBox(height: 16),
           _buildCard(
@@ -43,10 +43,7 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Calorie Tracker',
             subtitle: 'Track your calories',
             color: const Color(0xFFEC4899),
-            onTap: () => _navigateWithZoom(
-              context,
-              CalorieTrackerScreen(),
-            ),
+            onTap: () => _navigateWithZoom(context, CalorieTrackerScreen()),
           ),
           const SizedBox(height: 16),
           _buildCard(
@@ -55,10 +52,7 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Progress Reports',
             subtitle: 'View charts on your progress',
             color: const Color(0xFF10B981),
-            onTap: () => _navigateWithZoom(
-              context,
-              ProgressReportsScreen(),
-            ),
+            onTap: () => _navigateWithZoom(context, ProgressReportsScreen()),
           ),
           const SizedBox(height: 16),
           _buildCard(
@@ -67,10 +61,7 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Preset Routines',
             subtitle: 'View info on preset workouts',
             color: const Color(0xFFF59E0B),
-            onTap: () => _navigateWithZoom(
-              context,
-              PresetRoutinesScreen(),
-            ),
+            onTap: () => _navigateWithZoom(context, PresetRoutinesScreen()),
           ),
           const SizedBox(height: 16),
           _buildCard(
@@ -79,10 +70,8 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Recipe Book',
             subtitle: 'Explore healthy recipes',
             color: const Color(0xFF8B5CF6),
-            onTap: () => _navigateWithZoom(
-              context,
-              RecipeBookScreen(recipes: recipes),
-            ),
+            onTap: () =>
+                _navigateWithZoom(context, RecipeBookScreen(recipes: recipes)),
           ),
         ],
       ),
@@ -126,11 +115,7 @@ class FitnessHomeScreen extends StatelessWidget {
                       color: Colors.white.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Icon(
-                      icon,
-                      size: 32,
-                      color: Colors.white,
-                    ),
+                    child: Icon(icon, size: 32, color: Colors.white),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
@@ -185,10 +170,7 @@ class FitnessHomeScreen extends StatelessWidget {
 
           return ScaleTransition(
             scale: tween.animate(curvedAnimation),
-            child: FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
+            child: FadeTransition(opacity: animation, child: child),
           );
         },
         transitionDuration: const Duration(milliseconds: 500),
