@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:fitnessapp/models/theme_model.dart';
 import 'package:fitnessapp/widgets/title_bar.dart';
 
 class WorkoutLogScreen extends StatelessWidget {

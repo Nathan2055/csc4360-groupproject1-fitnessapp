@@ -5,9 +5,6 @@ import 'package:fitnessapp/screens/workout_log_screen.dart';
 import 'package:fitnessapp/screens/calorie_tracker_screen.dart';
 import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:fitnessapp/models/theme_model.dart';
-import 'package:fitnessapp/widgets/title_bar.dart';
 
 class FitnessHomeScreen extends StatelessWidget {
   final List<Recipe> recipes;

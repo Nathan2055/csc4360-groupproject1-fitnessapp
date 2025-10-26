@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:fitnessapp/models/theme_model.dart';
 
-// Data model for handling light and dark mode toggling between screens
+// ThemeModel is a data model and ChangeNotifier for managing persistance
+// of light mode and dark mode and its associated toggles between
+// different screens of the app
 class ThemeModel extends ChangeNotifier {
   // Internal state representation
   ThemeMode _themeMode = ThemeMode.light;

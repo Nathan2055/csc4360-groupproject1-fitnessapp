@@ -79,38 +79,15 @@ class _MyAppState extends State<MyApp> {
   // App builder
   @override
   Widget build(BuildContext context) {
-    TitleBar titleB = TitleBar(
-      title: const Text('Fitness Tracker'),
-      isHome: true,
-    );
-
     return MaterialApp(
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      // The current theme mode is provided by the theme model
-      // The theme model will flag the UI for update when the theme is toggled
+      // The current theme mode is provided by the ThemeModel
+      // ThemeModel will flag the UI for update when the theme is toggled
       themeMode: Provider.of<ThemeModel>(context).themeMode,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: TitleBar(title: const Text('Fitness Tracker'), isHome: true),
-        /*
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text('Fitness Tracker'),
-          actions: <Widget>[
-            IconButton(
-              // The icon and tooltip is also provided by the theme model
-              icon: Provider.of<ThemeModel>(context).themeIcon,
-              tooltip: Provider.of<ThemeModel>(context).themeText,
-              // toggleThemeMode is called to update the current theme
-              onPressed: () {
-                var model = context.read<ThemeModel>();
-                model.toggleThemeMode();
-              },
-            ),
-          ],
-        ),
-        */
         body: FitnessHomeScreen(recipes: recipeList),
       ),
     );
