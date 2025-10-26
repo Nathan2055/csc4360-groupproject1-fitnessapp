@@ -4,6 +4,7 @@ import 'package:fitnessapp/screens/workout_log_screen.dart';
 import 'package:fitnessapp/screens/calorie_tracker_screen.dart';
 import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
+import 'package:fitnessapp/widgets/fitness_card.dart';
 
 class FitnessHomeScreen extends StatelessWidget {
   const FitnessHomeScreen({super.key});
@@ -22,8 +23,7 @@ class FitnessHomeScreen extends StatelessWidget {
             ).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 24),
-          _buildCard(
-            context,
+          FitnessCard(
             icon: Icons.fitness_center,
             title: 'Workout Log',
             subtitle: 'Track your workouts',
@@ -31,8 +31,7 @@ class FitnessHomeScreen extends StatelessWidget {
             onTap: () => _navigateWithZoom(context, WorkoutLogScreen()),
           ),
           const SizedBox(height: 16),
-          _buildCard(
-            context,
+          FitnessCard(
             icon: Icons.local_fire_department,
             title: 'Calorie Tracker',
             subtitle: 'Track your calories',
@@ -40,8 +39,7 @@ class FitnessHomeScreen extends StatelessWidget {
             onTap: () => _navigateWithZoom(context, CalorieTrackerScreen()),
           ),
           const SizedBox(height: 16),
-          _buildCard(
-            context,
+          FitnessCard(
             icon: Icons.show_chart,
             title: 'Progress Reports',
             subtitle: 'View charts on your progress',
@@ -49,8 +47,7 @@ class FitnessHomeScreen extends StatelessWidget {
             onTap: () => _navigateWithZoom(context, ProgressReportsScreen()),
           ),
           const SizedBox(height: 16),
-          _buildCard(
-            context,
+          FitnessCard(
             icon: Icons.sports_gymnastics,
             title: 'Preset Routines',
             subtitle: 'View info on preset workouts',
@@ -58,8 +55,7 @@ class FitnessHomeScreen extends StatelessWidget {
             onTap: () => _navigateWithZoom(context, PresetRoutinesScreen()),
           ),
           const SizedBox(height: 16),
-          _buildCard(
-            context,
+          FitnessCard(
             icon: Icons.restaurant_menu,
             title: 'Recipe Book',
             subtitle: 'Explore healthy recipes',
@@ -67,83 +63,6 @@ class FitnessHomeScreen extends StatelessWidget {
             onTap: () => _navigateWithZoom(context, RecipeListScreen()),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCard(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: color.withValues(alpha: 0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Material(
-          color: color,
-          borderRadius: BorderRadius.circular(16),
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(16),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(icon, size: 32, color: Colors.white),
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          subtitle,
-                          style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.9),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }
