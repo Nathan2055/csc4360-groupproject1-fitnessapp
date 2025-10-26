@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe.dart';
-import 'package:fitnessapp/screens/home_screen.dart';
+import 'package:fitnessapp/screens/fitness_home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:fitnessapp/models/theme_model.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatefulWidget {
 // Recipe model definition is now in lib/models/recipe.dart
 
 class _MyAppState extends State<MyApp> {
-  // Navigation is handled by HomeScreen routing to DetailsScreen
+  // Navigation is handled by FitnessHomeScreen routing to feature screens
 
   // Recipe list definition
   final List<Recipe> recipeList = [
@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Recipe Book'),
+          title: const Text('Fitness Tracker'),
           actions: <Widget>[
             IconButton(
               // The icon and tooltip is also provided by the theme model
@@ -102,7 +102,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
-        body: HomeScreen(recipes: recipeList),
+        body: FitnessHomeScreen(recipes: recipeList),
       ),
     );
   }
