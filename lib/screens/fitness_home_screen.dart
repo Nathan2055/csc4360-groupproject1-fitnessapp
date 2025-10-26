@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fitnessapp/models/recipe.dart';
-import 'package:fitnessapp/screens/recipe_book_screen.dart';
+import 'package:fitnessapp/screens/recipe_list_screen.dart';
 import 'package:fitnessapp/screens/workout_log_screen.dart';
 import 'package:fitnessapp/screens/calorie_tracker_screen.dart';
 import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
 
 class FitnessHomeScreen extends StatelessWidget {
-  final List<Recipe> recipes;
-
-  const FitnessHomeScreen({super.key, required this.recipes});
+  const FitnessHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +64,7 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Recipe Book',
             subtitle: 'Explore healthy recipes',
             color: const Color(0xFF8B5CF6),
-            onTap: () =>
-                _navigateWithZoom(context, RecipeBookScreen(recipes: recipes)),
+            onTap: () => _navigateWithZoom(context, RecipeListScreen()),
           ),
         ],
       ),

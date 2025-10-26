@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fitnessapp/models/recipe.dart';
+import 'package:fitnessapp/models/recipe_model.dart';
 import 'package:fitnessapp/widgets/title_bar.dart';
 
-class DetailsScreen extends StatelessWidget {
-  final Recipe recipe;
+class RecipeDetailsScreen extends StatelessWidget {
+  final RecipeModel recipe;
 
-  const DetailsScreen({super.key, required this.recipe});
+  const RecipeDetailsScreen({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
