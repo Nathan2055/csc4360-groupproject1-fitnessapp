@@ -2,12 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fitnessapp/models/theme_model.dart';
 
-class TitleBar extends AppBar {
-  @override
+/*
+class _PreferredTitleBarSize extends Size {
+  _PreferredTitleBarSize(this.toolbarHeight, this.bottomHeight)
+    : super.fromHeight((toolbarHeight ?? kToolbarHeight) + (bottomHeight ?? 0));
+
+  final double? toolbarHeight;
+  final double? bottomHeight;
+}
+*/
+
+class TitleBar extends StatelessWidget implements PreferredSizeWidget {
   final Text title;
   final bool isHome;
 
-  TitleBar({super.key, required this.title, this.isHome = false});
+  //final preferredSize = _PreferredTitleBarSize(toolbarHeight, bottom?.preferredSize.height)
+
+  const TitleBar({super.key, required this.title, this.isHome = false});
 
   /*
   AppBar buildTitleBar({
@@ -34,6 +45,7 @@ class TitleBar extends AppBar {
   }
   */
 
+  @override
   Widget build(BuildContext context) {
     /*
     // TODO: implement build
@@ -56,4 +68,15 @@ class TitleBar extends AppBar {
       ],
     );
   }
+
+  @override
+  Size get preferredSize => _PreferredTitleBarSize(kToolbarHeight, null);
+}
+
+class _PreferredTitleBarSize extends Size {
+  _PreferredTitleBarSize(this.toolbarHeight, this.bottomHeight)
+    : super.fromHeight((toolbarHeight ?? kToolbarHeight) + (bottomHeight ?? 0));
+
+  final double? toolbarHeight;
+  final double? bottomHeight;
 }
