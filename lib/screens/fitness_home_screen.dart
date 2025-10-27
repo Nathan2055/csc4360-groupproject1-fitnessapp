@@ -5,7 +5,6 @@ import 'package:fitnessapp/screens/calorie_tracker_screen.dart';
 import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
 import 'package:fitnessapp/widgets/fitness_card.dart';
-import 'package:fitnessapp/models/zoom_animation.dart';
 
 class FitnessHomeScreen extends StatelessWidget {
   const FitnessHomeScreen({super.key});
@@ -29,8 +28,7 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Workout Log',
             subtitle: 'Track your workouts',
             color: const Color(0xFF6366F1),
-            onTap: () =>
-                ZoomAnimation().navigateWithZoom(context, WorkoutLogScreen()),
+            targetScreen: WorkoutLogScreen(),
           ),
           const SizedBox(height: 16),
           FitnessCard(
@@ -38,41 +36,34 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Calorie Tracker',
             subtitle: 'Track your calories',
             color: const Color(0xFFEC4899),
-            onTap: () => ZoomAnimation().navigateWithZoom(
-              context,
-              CalorieTrackerScreen(),
-            ),
+            targetScreen: CalorieTrackerScreen(),
           ),
+
           const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.show_chart,
             title: 'Progress Reports',
             subtitle: 'View charts on your progress',
             color: const Color(0xFF10B981),
-            onTap: () => ZoomAnimation().navigateWithZoom(
-              context,
-              ProgressReportsScreen(),
-            ),
+            targetScreen: ProgressReportsScreen(),
           ),
+
           const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.sports_gymnastics,
             title: 'Preset Routines',
             subtitle: 'View info on preset workouts',
             color: const Color(0xFFF59E0B),
-            onTap: () => ZoomAnimation().navigateWithZoom(
-              context,
-              PresetRoutinesScreen(),
-            ),
+            targetScreen: PresetRoutinesScreen(),
           ),
+
           const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.restaurant_menu,
             title: 'Recipe Book',
             subtitle: 'Explore healthy recipes',
             color: const Color(0xFF8B5CF6),
-            onTap: () =>
-                ZoomAnimation().navigateWithZoom(context, RecipeListScreen()),
+            targetScreen: RecipeListScreen(),
           ),
         ],
       ),

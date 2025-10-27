@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fitnessapp/models/zoom_animation.dart';
 
 class FitnessCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
   final Color color;
-  final VoidCallback onTap;
+  final Widget targetScreen;
 
   const FitnessCard({
     super.key,
@@ -13,13 +14,13 @@ class FitnessCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.color,
-    required this.onTap,
+    required this.targetScreen,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => ZoomAnimation().navigateWithZoom(context, targetScreen),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -35,7 +36,8 @@ class FitnessCard extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(16),
           child: InkWell(
-            onTap: onTap,
+            onTap: () =>
+                ZoomAnimation().navigateWithZoom(context, targetScreen),
             borderRadius: BorderRadius.circular(16),
             child: Padding(
               padding: const EdgeInsets.all(24),
