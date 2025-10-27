@@ -5,6 +5,7 @@ import 'package:fitnessapp/screens/calorie_tracker_screen.dart';
 import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
 import 'package:fitnessapp/widgets/fitness_card.dart';
+import 'package:fitnessapp/models/zoom_animation.dart';
 
 class FitnessHomeScreen extends StatelessWidget {
   const FitnessHomeScreen({super.key});
@@ -28,7 +29,8 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Workout Log',
             subtitle: 'Track your workouts',
             color: const Color(0xFF6366F1),
-            onTap: () => _navigateWithZoom(context, WorkoutLogScreen()),
+            onTap: () =>
+                ZoomAnimation().navigateWithZoom(context, WorkoutLogScreen()),
           ),
           const SizedBox(height: 16),
           FitnessCard(
@@ -36,7 +38,10 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Calorie Tracker',
             subtitle: 'Track your calories',
             color: const Color(0xFFEC4899),
-            onTap: () => _navigateWithZoom(context, CalorieTrackerScreen()),
+            onTap: () => ZoomAnimation().navigateWithZoom(
+              context,
+              CalorieTrackerScreen(),
+            ),
           ),
           const SizedBox(height: 16),
           FitnessCard(
@@ -44,7 +49,10 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Progress Reports',
             subtitle: 'View charts on your progress',
             color: const Color(0xFF10B981),
-            onTap: () => _navigateWithZoom(context, ProgressReportsScreen()),
+            onTap: () => ZoomAnimation().navigateWithZoom(
+              context,
+              ProgressReportsScreen(),
+            ),
           ),
           const SizedBox(height: 16),
           FitnessCard(
@@ -52,7 +60,10 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Preset Routines',
             subtitle: 'View info on preset workouts',
             color: const Color(0xFFF59E0B),
-            onTap: () => _navigateWithZoom(context, PresetRoutinesScreen()),
+            onTap: () => ZoomAnimation().navigateWithZoom(
+              context,
+              PresetRoutinesScreen(),
+            ),
           ),
           const SizedBox(height: 16),
           FitnessCard(
@@ -60,32 +71,10 @@ class FitnessHomeScreen extends StatelessWidget {
             title: 'Recipe Book',
             subtitle: 'Explore healthy recipes',
             color: const Color(0xFF8B5CF6),
-            onTap: () => _navigateWithZoom(context, RecipeListScreen()),
+            onTap: () =>
+                ZoomAnimation().navigateWithZoom(context, RecipeListScreen()),
           ),
         ],
-      ),
-    );
-  }
-
-  void _navigateWithZoom(BuildContext context, Widget screen) {
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => screen,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          const begin = 0.0;
-          const end = 1.0;
-          final tween = Tween(begin: begin, end: end);
-          final curvedAnimation = CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOutCubic,
-          );
-
-          return ScaleTransition(
-            scale: tween.animate(curvedAnimation),
-            child: FadeTransition(opacity: animation, child: child),
-          );
-        },
-        transitionDuration: const Duration(milliseconds: 500),
       ),
     );
   }
