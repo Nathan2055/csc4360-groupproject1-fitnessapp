@@ -22,7 +22,6 @@ class FitnessHomeScreen extends StatelessWidget {
               context,
             ).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 24),
           FitnessCard(
             icon: Icons.fitness_center,
             title: 'Workout Log',
@@ -30,7 +29,6 @@ class FitnessHomeScreen extends StatelessWidget {
             color: const Color(0xFF6366F1),
             targetScreen: WorkoutLogScreen(),
           ),
-          const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.local_fire_department,
             title: 'Calorie Tracker',
@@ -38,7 +36,6 @@ class FitnessHomeScreen extends StatelessWidget {
             color: const Color(0xFFEC4899),
             targetScreen: CalorieTrackerScreen(),
           ),
-          const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.show_chart,
             title: 'Progress Reports',
@@ -46,7 +43,6 @@ class FitnessHomeScreen extends StatelessWidget {
             color: const Color(0xFF10B981),
             targetScreen: ProgressReportsScreen(),
           ),
-          const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.sports_gymnastics,
             title: 'Preset Routines',
@@ -54,7 +50,6 @@ class FitnessHomeScreen extends StatelessWidget {
             color: const Color(0xFFF59E0B),
             targetScreen: PresetRoutinesScreen(),
           ),
-          const SizedBox(height: 16),
           FitnessCard(
             icon: Icons.restaurant_menu,
             title: 'Recipe Book',

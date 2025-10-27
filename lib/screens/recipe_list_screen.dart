@@ -63,37 +63,21 @@ class RecipeListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TitleBar(title: const Text('Recipe Book')),
-      body: ListView.builder(
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          final recipe = recipes[index];
-          return FitnessCard(
-            icon: Icons.restaurant,
-            title: _truncate(20, recipe.name),
-            subtitle: _truncate(25, recipe.ingredients),
-            color: const Color(0xFF8B5CF6),
-            targetScreen: RecipeDetailsScreen(recipe: recipe),
-          );
-
-          /*
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: ListTile(
-              leading: const Icon(Icons.restaurant),
-              title: Text(_truncate(20, recipe.name)),
-              subtitle: Text(_truncate(25, recipe.ingredients)),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => RecipeDetailsScreen(recipe: recipe),
-                  ),
-                );
-              },
-            ),
-          );
-          */
-        },
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: ListView.builder(
+          itemCount: recipes.length,
+          itemBuilder: (context, index) {
+            final recipe = recipes[index];
+            return FitnessCard(
+              icon: Icons.restaurant,
+              title: _truncate(20, recipe.name),
+              subtitle: _truncate(25, recipe.ingredients),
+              color: const Color(0xFF8B5CF6),
+              targetScreen: RecipeDetailsScreen(recipe: recipe),
+            );
+          },
+        ),
       ),
     );
   }
