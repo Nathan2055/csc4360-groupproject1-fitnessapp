@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -83,7 +84,8 @@ class DBHelper {
   }
 
   Future<Database> _initializeDatabase() async {
-    String path = join(await getDatabasesPath(), 'my_database.db');
+    String path = join(await getDatabasesPath(), 'fitnessapp_db_v1.db');
+    debugPrint(path);
     return await openDatabase(path, version: 1, onCreate: _createTable);
   }
 
