@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe_model.dart';
 import 'package:fitnessapp/screens/recipe_details_screen.dart';
 import 'package:fitnessapp/widgets/title_bar.dart';
-import 'package:fitnessapp/widgets/fitness_card.dart';
 
 class RecipeListScreen extends StatelessWidget {
-  static const List<RecipeModel> recipes = [
+  final List<RecipeModel> recipes = [
     RecipeModel(
       1,
       'Spaghetti Bolognese',
@@ -30,7 +29,7 @@ class RecipeListScreen extends StatelessWidget {
       'Broccoli, bell pepper, carrot, snap peas, soy sauce, garlic, ginger, sesame oil, rice',
       '1) Cook rice.\n'
           '2) Stir-fry veggies in sesame oil over high heat.\n'
-          '3) Add garlic, ginger, and soy sauce; toss 2-3 min.\n'
+          '3) Add garlic, ginger, and soy sauce; toss 2–3 min.\n'
           '4) Serve over rice.',
     ),
     RecipeModel(
@@ -52,7 +51,7 @@ class RecipeListScreen extends StatelessWidget {
     ),
   ];
 
-  const RecipeListScreen({super.key});
+  RecipeListScreen({super.key});
 
   String _truncate(int cutoff, String value) {
     if (value.length <= cutoff) return value;
@@ -63,21 +62,27 @@ class RecipeListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TitleBar(title: const Text('Recipe Book')),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: ListView.builder(
-          itemCount: recipes.length,
-          itemBuilder: (context, index) {
-            final recipe = recipes[index];
-            return FitnessCard(
-              icon: Icons.restaurant,
-              title: _truncate(20, recipe.name),
-              subtitle: _truncate(25, recipe.ingredients),
-              color: const Color(0xFF8B5CF6),
-              targetScreen: RecipeDetailsScreen(recipe: recipe),
-            );
-          },
-        ),
+      body: ListView.builder(
+        itemCount: recipes.length,
+        itemBuilder: (context, index) {
+          final recipe = recipes[index];
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: ListTile(
+              leading: const Icon(Icons.restaurant),
+              title: Text(_truncate(20, recipe.name)),
+              subtitle: Text(_truncate(25, recipe.ingredients)),
+              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => RecipeDetailsScreen(recipe: recipe),
+                  ),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
