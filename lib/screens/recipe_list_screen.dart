@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fitnessapp/models/recipe_model.dart';
 import 'package:fitnessapp/screens/recipe_details_screen.dart';
 import 'package:fitnessapp/widgets/title_bar.dart';
+import 'package:fitnessapp/widgets/fitness_card.dart';
 
 class RecipeListScreen extends StatelessWidget {
   static const List<RecipeModel> recipes = [
@@ -66,6 +67,15 @@ class RecipeListScreen extends StatelessWidget {
         itemCount: recipes.length,
         itemBuilder: (context, index) {
           final recipe = recipes[index];
+          return FitnessCard(
+            icon: Icons.restaurant,
+            title: _truncate(20, recipe.name),
+            subtitle: _truncate(25, recipe.ingredients),
+            color: const Color(0xFF8B5CF6),
+            targetScreen: RecipeDetailsScreen(recipe: recipe),
+          );
+
+          /*
           return Card(
             margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: ListTile(
@@ -82,6 +92,7 @@ class RecipeListScreen extends StatelessWidget {
               },
             ),
           );
+          */
         },
       ),
     );
