@@ -34,6 +34,18 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
         errorMessage = e.toString();
       });
     }
+    /*
+    var test1 = await DBHelper.instance.getLastFiveDaysOfWorkouts();
+    for (int i = 0; i < test1.length; i++) {
+      var str = test1[i].toMap().toString();
+      debugPrint(str);
+    }
+    var test2 = test1.toString();
+    //String test = await DBHelper.instance
+    //.getLastFiveDaysOfWorkouts()
+    //.toString();
+    debugPrint(test2);
+    */
   }
 
   void _showAddWorkoutDialog() {
@@ -67,9 +79,9 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       _loadWorkouts();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error deleting workout: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error deleting workout: $e')));
       }
     }
   }
@@ -81,71 +93,63 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : errorMessage != null
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.error_outline,
-                        size: 80,
-                        color: Colors.red[400],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Database Error',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 8),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          'Database not available on web. Try running on mobile/Android emulator.',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: _loadWorkouts,
-                        child: const Text('Retry'),
-                      ),
-                    ],
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.error_outline, size: 80, color: Colors.red[400]),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Database Error',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                )
-              : workouts.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.fitness_center,
-                            size: 80,
-                            color: Colors.grey[400],
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            'No workouts yet',
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Start by logging your first workout',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    )
-                  : ListView.builder(
-                      padding: const EdgeInsets.all(12),
-                      itemCount: workouts.length,
-                      itemBuilder: (context, index) {
-                        final workout = workouts[index];
-                        return WorkoutCard(
-                          workout: workout,
-                          onDelete: () => _deleteWorkout(workout.id!),
-                        );
-                      },
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Database not available on web. Try running on mobile/Android emulator.',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
                     ),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _loadWorkouts,
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            )
+          : workouts.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.fitness_center, size: 80, color: Colors.grey[400]),
+                  const SizedBox(height: 16),
+                  Text(
+                    'No workouts yet',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Start by logging your first workout',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: workouts.length,
+              itemBuilder: (context, index) {
+                final workout = workouts[index];
+                return WorkoutCard(
+                  workout: workout,
+                  onDelete: () => _deleteWorkout(workout.id!),
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddWorkoutDialog,
         child: const Icon(Icons.add),
@@ -158,11 +162,7 @@ class WorkoutCard extends StatelessWidget {
   final WorkoutEntry workout;
   final VoidCallback? onDelete;
 
-  const WorkoutCard({
-    super.key,
-    required this.workout,
-    this.onDelete,
-  });
+  const WorkoutCard({super.key, required this.workout, this.onDelete});
 
   String _formatDate(DateTime date) {
     return '${date.month}/${date.day}/${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
@@ -203,10 +203,7 @@ class WorkoutCard extends StatelessWidget {
                       ),
                       Text(
                         _formatDate(workout.date),
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
                       ),
                     ],
                   ),
@@ -320,9 +317,9 @@ class _AddWorkoutDialogState extends State<_AddWorkoutDialog> {
       widget.onSave(_exerciseController.text, duration);
       Navigator.pop(context);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid duration')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Invalid duration')));
     }
   }
 

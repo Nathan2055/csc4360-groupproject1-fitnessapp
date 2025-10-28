@@ -121,6 +121,125 @@ class DBHelper {
     return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
   }
 
+  String _formatDate(DateTime date) {
+    return '${date.year}-${date.month}-${date.day}%';
+  }
+
+  Future<List<WorkoutEntry>> getLastFiveDaysOfWorkouts() async {
+    DateTime today = DateTime.now();
+    DateTime day_1 = today.subtract(const Duration(days: 1));
+    DateTime day_2 = today.subtract(const Duration(days: 2));
+    DateTime day_3 = today.subtract(const Duration(days: 3));
+    DateTime day_4 = today.subtract(const Duration(days: 4));
+    String today_s = _formatDate(today);
+    String day_1s = _formatDate(day_1);
+    String day_2s = _formatDate(day_2);
+    String day_3s = _formatDate(day_3);
+    String day_4s = _formatDate(day_4);
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'workouts',
+      where:
+          "date LIKE '$today_s' OR date LIKE '$day_1s' OR date LIKE '$day_2s' OR date LIKE '$day_3s' OR date LIKE '$day_4s'",
+    );
+    return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
+  }
+
+  Future<List<WorkoutEntry>> getWorkouts_today() async {
+    DateTime today = DateTime.now();
+    DateTime day_1 = today.subtract(const Duration(days: 1));
+    DateTime day_2 = today.subtract(const Duration(days: 2));
+    DateTime day_3 = today.subtract(const Duration(days: 3));
+    DateTime day_4 = today.subtract(const Duration(days: 4));
+    String today_s = _formatDate(today);
+    String day_1s = _formatDate(day_1);
+    String day_2s = _formatDate(day_2);
+    String day_3s = _formatDate(day_3);
+    String day_4s = _formatDate(day_4);
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'workouts',
+      where: "date LIKE '$today_s'",
+    );
+    return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
+  }
+
+  Future<List<WorkoutEntry>> getWorkouts_day1() async {
+    DateTime today = DateTime.now();
+    DateTime day_1 = today.subtract(const Duration(days: 1));
+    DateTime day_2 = today.subtract(const Duration(days: 2));
+    DateTime day_3 = today.subtract(const Duration(days: 3));
+    DateTime day_4 = today.subtract(const Duration(days: 4));
+    String today_s = _formatDate(today);
+    String day_1s = _formatDate(day_1);
+    String day_2s = _formatDate(day_2);
+    String day_3s = _formatDate(day_3);
+    String day_4s = _formatDate(day_4);
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'workouts',
+      where: "date LIKE '$day_1s'",
+    );
+    return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
+  }
+
+  Future<List<WorkoutEntry>> getWorkouts_day2() async {
+    DateTime today = DateTime.now();
+    DateTime day_1 = today.subtract(const Duration(days: 1));
+    DateTime day_2 = today.subtract(const Duration(days: 2));
+    DateTime day_3 = today.subtract(const Duration(days: 3));
+    DateTime day_4 = today.subtract(const Duration(days: 4));
+    String today_s = _formatDate(today);
+    String day_1s = _formatDate(day_1);
+    String day_2s = _formatDate(day_2);
+    String day_3s = _formatDate(day_3);
+    String day_4s = _formatDate(day_4);
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'workouts',
+      where: "date LIKE '$day_2s'",
+    );
+    return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
+  }
+
+  Future<List<WorkoutEntry>> getWorkouts_day3() async {
+    DateTime today = DateTime.now();
+    DateTime day_1 = today.subtract(const Duration(days: 1));
+    DateTime day_2 = today.subtract(const Duration(days: 2));
+    DateTime day_3 = today.subtract(const Duration(days: 3));
+    DateTime day_4 = today.subtract(const Duration(days: 4));
+    String today_s = _formatDate(today);
+    String day_1s = _formatDate(day_1);
+    String day_2s = _formatDate(day_2);
+    String day_3s = _formatDate(day_3);
+    String day_4s = _formatDate(day_4);
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'workouts',
+      where: "date LIKE '$day_3s'",
+    );
+    return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
+  }
+
+  Future<List<WorkoutEntry>> getWorkouts_day4() async {
+    DateTime today = DateTime.now();
+    DateTime day_1 = today.subtract(const Duration(days: 1));
+    DateTime day_2 = today.subtract(const Duration(days: 2));
+    DateTime day_3 = today.subtract(const Duration(days: 3));
+    DateTime day_4 = today.subtract(const Duration(days: 4));
+    String today_s = _formatDate(today);
+    String day_1s = _formatDate(day_1);
+    String day_2s = _formatDate(day_2);
+    String day_3s = _formatDate(day_3);
+    String day_4s = _formatDate(day_4);
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'workouts',
+      where: "date LIKE '$day_4s'",
+    );
+    return List.generate(maps.length, (i) => WorkoutEntry.fromMap(maps[i]));
+  }
+
   Future<List<CalorieEntry>> getCalories() async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('calories');
