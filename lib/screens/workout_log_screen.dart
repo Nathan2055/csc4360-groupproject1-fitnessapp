@@ -34,18 +34,6 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
         errorMessage = e.toString();
       });
     }
-    /*
-    var test1 = await DBHelper.instance.getLastFiveDaysOfWorkouts();
-    for (int i = 0; i < test1.length; i++) {
-      var str = test1[i].toMap().toString();
-      debugPrint(str);
-    }
-    var test2 = test1.toString();
-    //String test = await DBHelper.instance
-    //.getLastFiveDaysOfWorkouts()
-    //.toString();
-    debugPrint(test2);
-    */
   }
 
   void _showAddWorkoutDialog() {
@@ -92,49 +80,6 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       appBar: TitleBar(title: const Text('Workout Log')),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
-              : workouts.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.fitness_center,
-                            size: 80,
-                            color: Colors.grey[400],
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            'No workouts yet',
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Start by logging your first workout',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    )
-                  : ListView.builder(
-                      padding: const EdgeInsets.all(12),
-                      itemCount: workouts.length,
-                      itemBuilder: (context, index) {
-                        final workout = workouts[index];
-                        return WorkoutCard(
-                          workout: workout,
-                          onDelete: () => _deleteWorkout(workout.id!),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: _loadWorkouts,
-                    child: const Text('Retry'),
-                  ),
-                ],
-              ),
-            )
           : workouts.isEmpty
           ? Center(
               child: Column(

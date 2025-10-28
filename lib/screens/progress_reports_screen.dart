@@ -67,6 +67,7 @@ class _ProgressReportsScreenState extends State<ProgressReportsScreen> {
     _barChart = getBarChart();
   }
 
+  /*
   void _retry() {
     setState(() {
       _barChart = getBarChart();
@@ -88,6 +89,7 @@ class _ProgressReportsScreenState extends State<ProgressReportsScreen> {
       });
     }
   }
+  */
 
   Future<List<BarChartGroupData>> _getWorkoutData() async {
     var rawData_today = await DBHelper.instance.getWorkouts_today();
