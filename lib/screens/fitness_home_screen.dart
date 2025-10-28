@@ -6,6 +6,7 @@ import 'package:fitnessapp/screens/progress_reports_screen.dart';
 import 'package:fitnessapp/screens/preset_routines_screen.dart';
 import 'package:fitnessapp/widgets/fitness_card.dart';
 
+
 class FitnessHomeScreen extends StatelessWidget {
   const FitnessHomeScreen({super.key});
 
