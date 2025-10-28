@@ -92,24 +92,39 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       appBar: TitleBar(title: const Text('Workout Log')),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
-          : errorMessage != null
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.error_outline, size: 80, color: Colors.red[400]),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Database Error',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'Database not available on web. Try running on mobile/Android emulator.',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      textAlign: TextAlign.center,
+              : workouts.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.fitness_center,
+                            size: 80,
+                            color: Colors.grey[400],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'No workouts yet',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Start by logging your first workout',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                    )
+                  : ListView.builder(
+                      padding: const EdgeInsets.all(12),
+                      itemCount: workouts.length,
+                      itemBuilder: (context, index) {
+                        final workout = workouts[index];
+                        return WorkoutCard(
+                          workout: workout,
+                          onDelete: () => _deleteWorkout(workout.id!),
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(height: 16),
