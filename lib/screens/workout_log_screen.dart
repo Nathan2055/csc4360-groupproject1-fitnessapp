@@ -80,38 +80,6 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       appBar: TitleBar(title: const Text('Workout Log')),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
-          : errorMessage != null
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.error_outline,
-                        size: 80,
-                        color: Colors.red[400],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Database Error',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 8),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          'Database not available on web. Try running on mobile/Android emulator.',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: _loadWorkouts,
-                        child: const Text('Retry'),
-                      ),
-                    ],
-                  ),
-                )
               : workouts.isEmpty
                   ? Center(
                       child: Column(
